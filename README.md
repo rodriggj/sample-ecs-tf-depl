@@ -59,11 +59,11 @@ Bucket configuration is as follows:
 
 ----------
 
-### 4. Create initial TF manifests
-1. Create a dir called `Infrastructure`
+### 4. Create initial VPC and Subnet resources 
+1. Create a dir called `01-Infrastructure`
 2. Create a file within this dir called `infrastructure-prod.config`
 3. Within the file input the following config: 
-```
+```s
 key="PROD/infrastructure.tfstate"
 bucket="sample-ecs-tf-state-config-gjr"
 region="us-east-1"
@@ -104,3 +104,8 @@ resource "aws_vpc" "production_vpc" {
 > Will we be able to enable to `enable-dns-hostnames=true` or will this be an IP address for our EC2 hosts? 
 > Are there specific tagging requirements levied by the organziation or FinOps for AWS resources? 
 > What is the requirement for AZ deployment with a region? Will it be 2, 3, ??? (See example with public and private subnets)
+
+---------
+
+### 5. Create intial Route Tables 
+1. 
