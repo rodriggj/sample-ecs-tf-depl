@@ -13,9 +13,7 @@
 
 3. Create a unique bucket name that indicates the bucket is for the purpose of maintaining TF state file. Configure the bucket to the desired region. 
 
-<p align="center">
 ![alt text](imgs/crreate-bucket.png)
-</p>
 
 Bucket configuration is as follows:
 - [ ] Bucket Type: General Purpose
