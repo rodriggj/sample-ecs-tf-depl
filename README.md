@@ -96,10 +96,11 @@ resource "aws_vpc" "production_vpc" {
   }
 }
 ```
-7. 
+7. You can now create public and private subnets amongst the `vpc.tf` and the `variables.tf` manifests. See the files to understand how these were added as it is just copy/paste and modification to the naming conventions. 
 
 > ### Questions for Client 
 > Is there a default region we will be directed to input as our default region?
 > What is the CIDR range that will be allocated to our Prod, Dev, etc. VPCs? 
 > Will we be able to enable to `enable-dns-hostnames=true` or will this be an IP address for our EC2 hosts? 
 > Are there specific tagging requirements levied by the organziation or FinOps for AWS resources? 
+> What is the requirement for AZ deployment with a region? Will it be 2, 3, ??? (See example with public and private subnets)
