@@ -51,7 +51,7 @@ resource "aws_subnet" "private-subnet-1" {
     availability_zone = "use1-az1"
 
     tags = {
-        Name = "Public-Subnet-1"
+        Name = "Private-Subnet-1"
     }
 }
 
@@ -61,7 +61,7 @@ resource "aws_subnet" "private-subnet-2" {
     availability_zone = "use2-az2"
 
     tags = {
-        Name = "Public-Subnet-2"
+        Name = "Private-Subnet-2"
     }
 }
 
@@ -71,6 +71,6 @@ resource "aws_subnet" "private-subnet-3" {
     availability_zone = "use3-az3"
 
     tags = {
-        Name = "Public-Subnet-3"
+        Name = "Private-Subnet-3"
     }
 }
