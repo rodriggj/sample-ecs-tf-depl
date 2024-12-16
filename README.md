@@ -12,10 +12,7 @@
 2. Go to AWS console > S3 service
 
 3. Create a unique bucket name that indicates the bucket is for the purpose of maintaining TF state file. Configure the bucket to the desired region. 
-
-<p align="center">
-<img width="450" src="imgs/crreate-bucket.png>
-</p>
+> See image _imgs/create-bucket.png_
 
 Bucket configuration is as follows:
 - [ ] Bucket Type: General Purpose
@@ -33,6 +30,5 @@ Bucket configuration is as follows:
 - [ ] If not, and one needs to be created is there a region that the bucket must be created? 
 - [ ] Is there a particular configuration required to create an S3 bucket? (e.g naming convention, versioning enabled, etc.) 
 
-<p align="center">
-![alt text](imgs/crreated-bucket.png)
-</p>
+4. A successful creation notification should be displayed on the console.
+> See image _imgs/created-bucket.png_
