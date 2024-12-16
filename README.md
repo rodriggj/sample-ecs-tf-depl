@@ -1,1 +1,9 @@
-# Sample TF project# ws-tf-sample
+# Sample Terraform ECS Deployment
+
+## Resources Created
+
+## Architectures
+
+## Procedure
+
+
