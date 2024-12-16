@@ -28,8 +28,13 @@ Bucket configuration is as follows:
 4. A successful creation notification should be displayed on the console.
 > See image _imgs/created-bucket.png_
 
+
 > Questions for the client: 
-> 
 > - [ ] Is there an existiing location to store a TF State manifest folder / bucket?
 > - [ ] If not, and one needs to be created is there a region that the bucket must be created? 
 > - [ ] Is there a particular configuration required to create an S3 bucket? (e.g naming convention, versioning enabled, etc.) 
+
+----------
+
+
+
