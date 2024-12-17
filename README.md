@@ -130,5 +130,55 @@ resource "aws_vpc" "production_vpc" {
 -----------
 
 ### 7. Create Output files
-1. With the `01-infrastructure` folder create a file called `production.tfvars`
-2. 
+1. With the `01-infrastructure` folder create a file called `production.tfvars` and populate it with input variables.
+2. Create a file called `outputs.tf` and update the output you would like to see from the TF execution
+
+> ### Questions for Client 
+> - [ ] Is there guidance on use of variable files for runtime input?
+> - [ ] Where / what output is needed or guidance we need to follow to display to operations teams? 
+
+-----------
+
+### 8. Dryrun the configuration 
+1. `cd` to the `01-infrastructure` dir and run the following commnad:
+```s
+terraform init -backend-config="infrastructure-prod.config"
+```
+> See image _imgs/dryrun-tfinit.png_
+
+2. If you make a change to any of the files, run the following command to see what TF will `plan`
+
+```s
+terraform plan -var-file="production.tfvars"
+```
+> Note: The `production.tfvars` are a series of input variables you are providing the the TF configuration. If you were to run the `terraform plan` command without specifying the file containing the input vars you would be prompted at the console for the input fields that are in the `.tfvar` file.
+
+> See image _imgs/tfplan.png_
+
+3. If the plan displays without error in the console, you are ready to `apply` the config and deploy to AWS. The TF provider block specifies `aws`, which means that the TF API will invoke a Cloud Formation Template on AWS and deploy the Cloud Formation Stack which you can check in the console. To _dryrun_ this process, enter the following command: 
+
+```
+terraform apply -var-file="production.tfvars"
+```
+> Note: With the command above you will be prompted in the console to `Approve`, by entering `y` or `yes`. You can bypass this by adding `-auto-approve` flag to the end of the above command.
+
+> See image _imgs/tfapply.png_
+> See image _imgs/aws_console.png
+
+4. Once you verify the resources build as expected, we need to `turn the lights off`, and delete the environment. 
+```
+terraform destroy -var-file="production.tfvars" -auto-approve
+```
+
+5. Ensure that you create a .gitignore file to avoid size limitations to the repository and add any of the Terraform init created files or delete them completely. You can always re-initate the TF block files with the `terraform init` command. 
+
+Ensure the following are in "grayed" out by the .gitignore file
+- [ ] .terraform/providers
+
+The `terraform.tfstate` file is what is stored in the S3 bucket (aka TF State Backend) to ensure that there are no conflicts of TF state across multiple teams providing input to TF files. 
+
+> ### Questions for Client 
+> - [ ] We will want to organize our TF manifests to be environment specific, we need to know what envs we will be provisioned to align this structure
+> - [ ] This example demonstrates the need to have multiple IAM roles, policies, and permissions to ensure that the required services can execute API interactions without an error. Need to identify the appropriate IAM permissions. Find an example for a analogous project. 
+
+------------
