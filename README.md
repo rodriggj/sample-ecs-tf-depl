@@ -163,7 +163,8 @@ terraform apply -var-file="production.tfvars"
 > Note: With the command above you will be prompted in the console to `Approve`, by entering `y` or `yes`. You can bypass this by adding `-auto-approve` flag to the end of the above command.
 
 > See image _imgs/tfapply.png_
-> See image _imgs/aws_console.png
+
+> See image _imgs/aws_console.png_
 
 4. Once you verify the resources build as expected, we need to `turn the lights off`, and delete the environment. 
 ```
