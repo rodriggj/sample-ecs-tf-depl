@@ -183,3 +183,31 @@ The `terraform.tfstate` file is what is stored in the S3 bucket (aka TF State Ba
 > - [ ] This example demonstrates the need to have multiple IAM roles, policies, and permissions to ensure that the required services can execute API interactions without an error. Need to identify the appropriate IAM permissions. Find an example for a analogous project. 
 
 ------------
+
+### 9. Configure DNS, ECS Fargate cluster, and ALB
+
+1. If we need to create a DNS record on AWS, then the first part of this process is manual. 
+2. Go to Route 53 on AWS console and register an AWS domain. (e.g. `ipaas-exmaple.com)
+
+> You will have to wait till this domain is validated and assigned to you.
+
+3. Lets configure the backend TF state -> Create a new dir called `02-platform` within the dir create a file called `platform-prod.config` and input the following the content show in the repo.
+
+4. Configure the _ecs fargate_ cluster. Create a file called `ecs.tf` and update the config as contained in the repo. This will configure the state file as well as create the ecs cluster. You will need to create a `variables.tf` file, and update it to provide references to this file. See file in repo. 
+
+5. Update the `ecs.tf` file to include the build for the Application Load Balancer. This will include a few more variables as well as a new file to configure the _security groups_ for the ALB resource. Create a new file called `security-groups.tf` to configure this resource. 
+
+
+
+
+
+
+
+> See images _imgs/route53-domain.png_
+
+> ### Questions for Client 
+> - [ ] What service will be utilzed to register DNS? Who will be registering the DNS? 
+> - [ ] Our design will require an Application Load Balancer, is there an existing ALB or NLB that we will be utilizing for middleware services? if so what is this LB?
+> - [ ] What is required for the LB configuration (e.g. Health Checks, a particular routing scheme (geolocation, round-robin, etc.)
+> - [ ] Are there a series of Security Groups that are currently configured for various environments or resources that we will reuse? Are there specific guidance / compliance rules needed for SG configurations. 
+
