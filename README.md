@@ -99,11 +99,11 @@ resource "aws_vpc" "production_vpc" {
 7. You can now create public and private subnets amongst the `vpc.tf` and the `variables.tf` manifests. See the files to understand how these were added as it is just copy/paste and modification to the naming conventions. 
 
 > ### Questions for Client 
-> Is there a default region we will be directed to input as our default region?
-> What is the CIDR range that will be allocated to our Prod, Dev, etc. VPCs? 
-> Will we be able to enable to `enable-dns-hostnames=true` or will this be an IP address for our EC2 hosts? 
-> Are there specific tagging requirements levied by the organziation or FinOps for AWS resources? 
-> What is the requirement for AZ deployment with a region? Will it be 2, 3, ??? (See example with public and private subnets)
+> - [ ] Is there a default region we will be directed to input as our default region?
+> - [ ] What is the CIDR range that will be allocated to our Prod, Dev, etc. VPCs? 
+> - [ ] Will we be able to enable to `enable-dns-hostnames=true` or will this be an IP address for our EC2 hosts? 
+> - [ ] Are there specific tagging requirements levied by the organziation or FinOps for AWS resources? 
+> - [ ] What is the requirement for AZ deployment with a region? Will it be 2, 3, ??? (See example with public and private subnets)
 
 ---------
 
@@ -111,8 +111,8 @@ resource "aws_vpc" "production_vpc" {
 1. Within the `vpc.tf` file input the sections assocaiated with public and private route tables & route table associations
 
 > ### Questions for Client 
-> How many AZs will be needed and in what region, this will determine the number of Route Tables and Route Table associations to the CIDR blocks
-> Note there is a default `main` route table and no configuration was applied, is there any config needed for the `main` rtb?
+> - [ ] How many AZs will be needed and in what region, this will determine the number of Route Tables and Route Table associations to the CIDR blocks
+> - [ ] Note there is a default `main` route table and no configuration was applied, is there any config needed for the `main` rtb?
 
 ----------
 
@@ -123,6 +123,12 @@ resource "aws_vpc" "production_vpc" {
 4. Finally, because the traffic will leave the env to the intenal client network (albiet a VPN or other secure tunnel), an Internet Gateway will need to be configured.
 
 > ### Questions for Client 
-> How many AZs will be needed and in what region, this will determine the number of Route Tables and Route Table associations to the CIDR blocks
-> Note there is a default `main` route table and no configuration was applied, is there any config needed for the `main` rtb?
-> For the intental NAT gateway, what routes will be allowed to be configured in the RTB. Can we utilize 0.0.0.0/0? Or does it have to be a specific subset of routes? 
+> - [ ] How many AZs will be needed and in what region, this will determine the number of Route Tables and Route Table associations to the CIDR blocks
+> - [ ] Note there is a default `main` route table and no configuration was applied, is there any config needed for the `main` rtb?
+> - [ ] For the intental NAT gateway, what routes will be allowed to be configured in the RTB. Can we utilize 0.0.0.0/0? Or does it have to be a specific subset of routes? 
+
+-----------
+
+### 7. Create Output files
+1. With the `01-infrastructure` folder create a file called `production.tfvars`
+2. 
