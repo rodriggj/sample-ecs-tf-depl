@@ -108,4 +108,21 @@ resource "aws_vpc" "production_vpc" {
 ---------
 
 ### 5. Create intial Route Tables 
-1. 
+1. Within the `vpc.tf` file input the sections assocaiated with public and private route tables & route table associations
+
+> ### Questions for Client 
+> How many AZs will be needed and in what region, this will determine the number of Route Tables and Route Table associations to the CIDR blocks
+> Note there is a default `main` route table and no configuration was applied, is there any config needed for the `main` rtb?
+
+----------
+
+### 6. Create the NAT & Internet Gateway 
+1. Within the `vpc.tf` file we will need to ensure that there is a NAT to traverse traffic btwn the public and private subnets. 
+2. The NAT Gateway IP address will change for each CIDR deployment so we may want to utilize an EIP to retain a static IP at the NAT gwy.
+3. A route needs to be configured via the private subnet to ensure that the traffic bound for the private subnet is routable.
+4. Finally, because the traffic will leave the env to the intenal client network (albiet a VPN or other secure tunnel), an Internet Gateway will need to be configured.
+
+> ### Questions for Client 
+> How many AZs will be needed and in what region, this will determine the number of Route Tables and Route Table associations to the CIDR blocks
+> Note there is a default `main` route table and no configuration was applied, is there any config needed for the `main` rtb?
+> For the intental NAT gateway, what routes will be allowed to be configured in the RTB. Can we utilize 0.0.0.0/0? Or does it have to be a specific subset of routes? 
