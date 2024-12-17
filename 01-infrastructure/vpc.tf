@@ -11,7 +11,7 @@ resource "aws_vpc" "production_vpc" {
     enable_dns_hostnames    = true
 
     tags = {
-        Name = "Production-VPC"
+        Name = "t-ws-middleware-VPC"
   }
 }
 
@@ -21,7 +21,7 @@ resource "aws_subnet" "public-subnet-1" {
     availability_zone = "us-east-1a"
 
     tags = {
-        Name = "Public-Subnet-1"
+        Name = "t-ws-public-sn-1"
     }
 }
 
@@ -31,7 +31,7 @@ resource "aws_subnet" "public-subnet-2" {
     availability_zone = "us-east-1b"
 
     tags = {
-        Name = "Public-Subnet-2"
+        Name = "t-ws-public-sn-2"
     }
 }
 
@@ -41,7 +41,7 @@ resource "aws_subnet" "public-subnet-3" {
     availability_zone = "us-east-1c"
 
     tags = {
-        Name = "Public-Subnet-3"
+        Name = "t-ws-public-sn-3"
     }
 }
 
@@ -51,7 +51,7 @@ resource "aws_subnet" "private-subnet-1" {
     availability_zone = "us-east-1a"
 
     tags = {
-        Name = "Private-Subnet-1"
+        Name = "t-ws-private-sn-1"
     }
 }
 
@@ -61,7 +61,7 @@ resource "aws_subnet" "private-subnet-2" {
     availability_zone = "us-east-1b"
 
     tags = {
-        Name = "Private-Subnet-2"
+        Name = "t-ws-private-sn-2"
     }
 }
 
@@ -71,21 +71,21 @@ resource "aws_subnet" "private-subnet-3" {
     availability_zone = "us-east-1c"
 
     tags = {
-        Name = "Private-Subnet-3"
+        Name = "t-ws-private-sn-3"
     }
 }
 
 resource "aws_route_table" "public_route_table" {
     vpc_id  = "${aws_vpc.production_vpc.id}"
     tags    = {
-        Name = "Public-Route-Table"
+        Name = "t-ws-public-rtb"
     }
 }
 
 resource "aws_route_table" "private_route_table" {
     vpc_id  = "${aws_vpc.production_vpc.id}"
     tags    = {
-        Name = "Private-Route-Table"
+        Name = "t-ws-private-rtb"
     }
 }
 
@@ -122,7 +122,7 @@ resource "aws_route_table_association" "private_subnet_3_association" {
 resource "aws_eip" "elastic_ip_for_nat_gw" {
   associate_with_private_ip = "10.0.0.5"
   tags                      = {
-    Nmme = "Production-EIP"
+    Nmme = "t-ws-prod-eip"
   }
 } 
 
@@ -130,7 +130,7 @@ resource "aws_nat_gateway" "nat_gw" {
     allocation_id   = "${aws_eip.elastic_ip_for_nat_gw.id}"
     subnet_id       = "${aws_subnet.public-subnet-1.id}"
     tags            = {
-      Name = "Production-NAT-Gtwy"
+      Name = "t-ws-prod-ngw"
     }
     depends_on = [ aws_eip.elastic_ip_for_nat_gw ]
 }
@@ -144,7 +144,7 @@ resource "aws_route" "nat_gw_route" {
 resource "aws_internet_gateway" "production_igw" {
     vpc_id  = "${aws_vpc.production_vpc.id}"
     tags    = {
-      Name = "Production-IGW"
+      Name = "t-ws-prod-igw"
     }
 }
 
